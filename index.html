@@ -181,12 +181,9 @@
   </div>
 
   <script>
-    // ============================================================
-    //  PASTE YOUR FREE GEMINI API KEY BETWEEN THE QUOTES BELOW
-    //  Get one at: https://aistudio.google.com/app/apikey
-    // ============================================================
-    const API_KEY = "AQ.Ab8RN6KsJEFlTQ4iZ75lRA0W266xSmjsFOKL9wrZEleGhlt6Zw";  // <-- Replace with your API key
-    // ============================================================
+  
+    const API_KEY = "AQ.Ab8RN6KsJEFlTQ4iZ75lRA0W266xSmjsFOKL9wrZEleGhlt6Zw";  
+
 
     const MODEL = "gemini-2.5-flash";
     const URL = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${API_KEY}`;
@@ -196,7 +193,7 @@
     const input = $("input");
     const sendBtn = $("send");
 
-    // Keep the full conversation so the AI has context
+    
     let history = [];
 
     function hasKey() {
@@ -214,7 +211,7 @@
       return div;
     }
 
-    // Auto-grow the textarea as the user types
+ 
     input.addEventListener("input", () => {
       input.style.height = "auto";
       input.style.height = Math.min(input.scrollHeight, 140) + "px";
@@ -234,7 +231,7 @@
       input.style.height = "auto";
       sendBtn.disabled = true;
 
-      // Add the user's turn to history
+  
       history.push({ role: "user", parts: [{ text }] });
 
       const thinking = addMessage("Thinking…", "bot", "thinking");
@@ -258,7 +255,6 @@
         thinking.remove();
         addMessage(reply, "bot");
 
-        // Add the AI's turn to history so it remembers the conversation
         history.push({ role: "model", parts: [{ text: reply }] });
       } catch (err) {
         thinking.remove();
@@ -269,7 +265,7 @@
       }
     }
 
-    // Events
+
     sendBtn.onclick = sendMessage;
     input.addEventListener("keydown", (e) => {
       if (e.key === "Enter" && !e.shiftKey) {
@@ -278,7 +274,7 @@
       }
     });
 
-    // Example prompts fill the input
+    
     $("examples")?.addEventListener("click", (e) => {
       if (e.target.classList.contains("example")) {
         input.value = e.target.textContent;
